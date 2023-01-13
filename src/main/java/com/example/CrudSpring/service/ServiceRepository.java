@@ -23,8 +23,16 @@ public class ServiceRepository {
     {
         return repositoryClient.findById(id);
     }
+    public Client findByid(Long id)
+    {
+        return repositoryClient.findById(id).get();
+    }
 
     public Client saveClient(Client client)
+    {
+        return repositoryClient.save(client);
+    }
+    public Client updateClient(Client client)
     {
         return repositoryClient.save(client);
     }
@@ -35,7 +43,8 @@ public class ServiceRepository {
       }
      public void DeleteClient (Long id)
      {
-            repositoryClient.deleteById(id);
+         Client client = findByid(id);
+            repositoryClient.delete(client);
      }
 
 

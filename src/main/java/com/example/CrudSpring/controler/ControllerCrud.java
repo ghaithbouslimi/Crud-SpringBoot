@@ -36,25 +36,14 @@ public class ControllerCrud {
         }
     }
 
-    @PostMapping("/postClient")
+    @PostMapping("/create")
     public Client postEmploye(@RequestBody Client client)
     {
         return service.saveClient(client);
     }
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Client> updateClient(@PathVariable("id") long id, @RequestBody Client client) {
-        Optional<Client> Data = service.getOne(id);
-
-        if (Data.isPresent()) {
-            Client doc = Data.get();
-            doc.setFirstname(doc.getFirstname());
-            doc.setLastname(doc.getLastname());
-            doc.setEmail(doc.getEmail());
-
-            return new ResponseEntity<>(service.saveClient(doc), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @PutMapping("/update")
+    public Client updateClient(@RequestBody Client client) {
+        return service.updateClient(client);
     }
 
     @DeleteMapping("/delete/{id}")
